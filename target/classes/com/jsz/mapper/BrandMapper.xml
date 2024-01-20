@@ -10,6 +10,7 @@
     <insert id="add" useGeneratedKeys="true" keyProperty="id">
         insert into brand( name, price, count, publish) values (#{name},#{price},#{count},#{publish});
     </insert>
+    <update id="update"></update>
 
     <select id="selectAll" resultMap="brandResultMap">
         select * from brand;

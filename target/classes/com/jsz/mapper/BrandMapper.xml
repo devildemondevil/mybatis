@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jsz.mapper.BrandMapper">
+
     <resultMap id="brandResultMap" type="brand">
         <result property="count" column="count"/>
     </resultMap>
@@ -10,6 +11,7 @@
     <insert id="add" useGeneratedKeys="true" keyProperty="id">
         insert into brand( name, price, count, publish) values (#{name},#{price},#{count},#{publish});
     </insert>
+
     <update id="update"></update>
 
     <select id="selectAll" resultMap="brandResultMap">

@@ -2,7 +2,6 @@ package com.jsz;
 
 import com.jsz.mapper.UserMapper;
 import com.jsz.pojo.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,15 +9,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
 
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.xml.back";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 

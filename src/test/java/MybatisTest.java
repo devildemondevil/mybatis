@@ -1,11 +1,14 @@
+import com.jsz.config.SpringConfig;
 import com.jsz.mapper.BrandMapper;
 import com.jsz.pojo.Brand;
-import com.jsz.pojo.User;
+import com.jsz.service.MyServiceImpl;
+import com.jsz.service.MyService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +21,7 @@ public class MybatisTest {
     @Test
     public void selectAllTest() throws IOException {
 
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.xml.back";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -41,7 +44,7 @@ public class MybatisTest {
     @Test
     public void selectByIdTest() throws IOException {
 
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.xml.back";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -68,7 +71,7 @@ public class MybatisTest {
 
         SqlSession session = null;
         try {
-            String resource = "mybatis-config.xml";
+            String resource = "mybatis-config.xml.back";
             InputStream inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -98,4 +101,32 @@ public class MybatisTest {
 
     }
 
+    @Test
+    public void testSpring(){
+
+        AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
+
+        BrandMapper brandMapper=applicationContext.getBean(BrandMapper.class);
+
+//        Brand brand = new Brand();
+//        brand.setCount(12);
+//        brand.setName("ssm框架精讲");
+//        brand.setPublish("清华出版社");
+//        brand.setPrice(200);
+
+//        brandMapper.add(brand);
+
+//        List<Brand> brands = brandMapper.selectAll();
+//
+//        brands.forEach(brand -> {
+//            System.out.println(brand.toString());
+//        });
+
+//        System.out.println(brands);
+
+        MyService myService=applicationContext.getBean(MyServiceImpl.class);
+        myService.transfer();
+
+
+    }
 }
